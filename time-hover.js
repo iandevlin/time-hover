@@ -8,31 +8,7 @@
 * Version tag: v0.1.0
 */
 var timeHover = function() {
-	
-	var addHover = function() {
-		var time = document.getElementsByTagName('time');
-		var len = time.length;
-		for (var i = 0; i < len; i++) {
-			var t = time[i];
-			var datetime = t.getAttribute('datetime');
-			if (datetime !== null) {
-				if (datetime.length > 0) {
-					var span = document.createElement('span');
-					span.setAttribute('class', 'datetime');
-					span.innerHTML = formatDateTime(datetime);					
-					var w = t.offsetWidth;
-					span.setAttribute('style', 'margin-left:-' + (w - 5) + 'px;width:' + w + 'px');
-					t.appendChild(span);				
-					t.addEventListener('mouseover', function() {
-						this.querySelectorAll('.datetime')[0].style.display = 'inline';
-					});				
-					t.addEventListener('mouseout', function() {
-						this.querySelectorAll('.datetime')[0].style.display = 'none';
-					});
-				}
-			}
-		}
-	}
+
 	// Month names for display date
 	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	var formatDateTime = function(datetime) {
@@ -54,14 +30,32 @@ var timeHover = function() {
 		// Build time string
 		var hasTime = ((datetime.split(':').length - 1) > 0);
 		if (hasTime) s += ' ' + d.getHours() + timeSep + addZero(d.getMinutes()) + timeSep + addZero(d.getSeconds());
-		console.log(s);
 		return s;
 	}
 	var addZero = function(number) {
 		return ((parseInt(number) < 10) ? '0' : '') + number;
 	}
 	
-	// Go!
-	addHover();
-	
+	var time = document.getElementsByTagName('time');
+	var len = time.length;
+	for (var i = 0; i < len; i++) {
+		var t = time[i];
+		var datetime = t.getAttribute('datetime');
+		if (datetime !== null) {
+			if (datetime.length > 0) {
+				var span = document.createElement('span');
+				span.setAttribute('class', 'datetime');
+				span.innerHTML = formatDateTime(datetime);					
+				var w = t.offsetWidth;
+				span.setAttribute('style', 'margin-left:-' + (w - 5) + 'px;width:' + w + 'px');
+				t.appendChild(span);				
+				t.addEventListener('mouseover', function() {
+					this.querySelectorAll('.datetime')[0].style.display = 'inline';
+				});				
+				t.addEventListener('mouseout', function() {
+					this.querySelectorAll('.datetime')[0].style.display = 'none';
+				});
+			}
+		}
+	}
 }
