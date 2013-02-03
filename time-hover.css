@@ -1,0 +1,19 @@
+/**
+* timeHover
+*
+* @author Ian Devlin <ian@iandevlin.com>
+* http://twitter.com/iandevlin
+* https://github.com/iandevlin/time-hover
+*
+* Version tag: v0.1.0
+*/
+time > span.datetime {
+	display:none;
+	position:absolute;
+	opacity:.8;
+	font-size:.6em;
+	text-align:center;
+	margin-top:-.5em;
+	line-height:1em;	
+	background:#ccc;
+}
